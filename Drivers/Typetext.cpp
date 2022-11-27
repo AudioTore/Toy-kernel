@@ -125,7 +125,7 @@ void terminal_writestring(const char* data)
 void clearscr(){
 		volatile char *video = (volatile char*)0xB8000;
 	        for(int i=0; i<VGA_WIDTH*VGA_HEIGHT;i++){
-			*(terminal_buffer+i*2) = ' ';
+			*(terminal_buffer+i) = ' ';
 								
 		}
 }
