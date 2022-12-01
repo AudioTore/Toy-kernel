@@ -53,7 +53,7 @@ typedef void (*isr_t)(registers_t *);
 
 ist_t interrupt_handlers[256];
 
-void irq_handler(registers_t *r) {
+extern "C" void irq_handler(registers_t *r) {
 	if (interrupt_handlers[r->int_no] != 0) {
 		isr_t handler = interrupt_handlers[r->int_no];
 		handler(r);
