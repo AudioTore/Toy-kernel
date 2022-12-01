@@ -1,7 +1,7 @@
 // gcc 7.4.0
 
 #include "Drivers/Typetext.cpp"
-#include "Shell/Shell.cpp"
+#include "Drivers/Keyboard/IDT.cpp"
 
 #include <stdbool.h>
 #include <stddef.h>
@@ -9,22 +9,14 @@
 
 extern "C" void main()
 {
-	terminal_initialize();
-	
-	/*
-	for (int i = 0; i < 100000; i++)
-	{
-		terminal_writestring("EchOS has successfully booted!");
-	}
-	*/
-	terminal_writestring("Testing testing.");
-	terminal_writestring("\n Testing testing.");
-	
-	
+	clear_screen();
+	print_string("Installing all service routines \n");
+	isr_install();
+
+	print_string("Enabling  extern interrupts \n");
+	asm volatile("sti");
+
+	print_string("Setting the keyboard. \n");
+	init_keyboard();
 }
-
-
-
-
-
 
