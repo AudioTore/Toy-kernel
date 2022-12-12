@@ -56,7 +56,7 @@ mov ah, 0x0e
 mov al, '.'
 int 0x10
 
-
+; Video memory configuration..
 xor ax, ax
 mov es, ax
 mov ds, ax
