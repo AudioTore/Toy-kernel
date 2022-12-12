@@ -424,4 +424,3 @@ isr31:
     push byte 0
     push byte 31
     jmp isr_common_stub
-
