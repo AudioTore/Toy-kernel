@@ -35,6 +35,7 @@ int get_cursor() {
 #define MAX_COLS 80
 #define WHITE_ON_BLACK 0x0f
 
+
 void set_char_at_video_memory(char character, int offset) {
     unsigned char *vidmem = (unsigned char *) VIDEO_ADDRESS;
     vidmem[offset] = character;
@@ -94,6 +95,13 @@ void print_string(char *string) {
 		i++;
 	}
 	set_cursor(offset);
+}
+
+void wait() {
+	int i = 0;
+	while(1==1) {
+	i++;
+	}
 }
 
 void clear_screen() {
