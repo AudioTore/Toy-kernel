@@ -1,3 +1,5 @@
+#include "combat_op.cpp"
+
 int compare_string(char s1[], char s2[]) {
 	int i;
 	for (i = 0; s1[i] == s2[i]; i++) {
@@ -19,9 +21,15 @@ void execute_command(char *input) {
     else if (compare_string(input, "help;") == 0) {
 	print_string("Test \n");
     }
+    else if (compare_string(input, "combat;") == 0) {
+		clear_screen();
+		disp_map();
+		print_string("\n\n");
+    }
     else if (compare_string(input, "console.clear;") == 0)
     {
-	clear_screen();
+		clear_screen();
+	
     }
     else if (compare_string(input, "open.calculator;") == 0)
     {
@@ -43,4 +51,5 @@ void execute_command(char *input) {
 	print_string("NOTE: Every command has a capital at the beginning and a '();' at the end. \n");
     }
     print_string("[0:/]: ");
+	
 }
