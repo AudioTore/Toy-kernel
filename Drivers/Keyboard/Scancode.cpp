@@ -182,19 +182,21 @@ static void keyboard_callback(registers_t *regs) {
     // scancode_to_captial[scancode];
 
     unsigned char c = 0;
-    if (scancode > SC_MAX) return;
+   
     
-
+	
     // If shift is pressed.    
     if (scancode == 0x2A)
     {
     	shift_hold = true;
-	print_string("Pressed!");
-    } if (scancode == 0xAA) {
+	// print_string("Pressed!");
+    } else if (scancode == 0xAA) {
 	shift_hold = false;
-    	print_string("Worked!");
+    	// print_string("Worked!");
     }
-    /*
+ 	
+    if (scancode > SC_MAX) return;
+
     if (scancode == BACKSPACE) {
         if (backspace(key_buffer) == true) {
             print_backspace();
@@ -219,7 +221,7 @@ static void keyboard_callback(registers_t *regs) {
         	print_string(str);
 	}
     }
-    */
+    
 }
 
 void init_keyboard() {
