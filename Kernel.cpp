@@ -2,6 +2,8 @@
 
 // Core part of the OS..
 
+
+#include "memory.hpp"
 #include "Drivers/Typetext.cpp"
 
 #include <stdbool.h>
@@ -28,6 +30,8 @@ extern "C" void main()
     	 init_keyboard();
 
 	 clear_screen();
+	 print_string(isolate_args("eeeeeee.s args ();",strlen("eeeeeee.s args ();")));
+	 print_string("\n");
 	 print_string("> ");
 
     	 
