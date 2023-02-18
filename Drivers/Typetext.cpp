@@ -3,6 +3,8 @@
 #define VGA_OFFSET_LOW 0x0f
 #define VGA_OFFSET_HIGH 0x0e
 
+#include <stdint.h>
+
 unsigned char port_byte_in(unsigned short port) {
 	unsigned char result;
 	__asm__("in %%dx, %%al" : "=a" (result) : "d" (port));
@@ -29,6 +31,7 @@ int get_cursor() {
     offset += port_byte_in(VGA_DATA_REGISTER);
     return offset * 2;
 }
+
 
 #define VIDEO_ADDRESS 0xb8000
 #define MAX_ROWS 25
@@ -104,9 +107,22 @@ void wait() {
 	}
 }
 
+void clear_screen_notext() {
+        for (int i = 0; i < MAX_COLS * MAX_ROWS; ++i) {
+                set_char_at_video_memory(' ', i * 2);
+        }
+        set_cursor(get_offset(0, 0));
+}
+            
+
 void clear_screen() {
 	for (int i = 0; i < MAX_COLS * MAX_ROWS; ++i) {
 		set_char_at_video_memory(' ', i * 2);
 	}
 	set_cursor(get_offset(0, 0));
+	print_string("==============================================================================\n");
+        print_string("||##########################################################################|| \n");
+        print_string("||                                 EchOS 1.6                                || \n");
+        print_string("||##########################################################################||\n");
+        print_string("==============================================================================\n");
 }
