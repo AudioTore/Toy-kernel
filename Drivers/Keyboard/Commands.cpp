@@ -1,5 +1,4 @@
 #include "combat_op.cpp"
-//#include "../ACPI/rsdp.cpp"
 
 #define KBRD_INTRFC 0x64
 #define KBRD_BIT_KDATA 0
@@ -22,8 +21,6 @@ void port_word_out(unsigned short port, unsigned short data) // The outw version
 {
 	__asm__("outw %%ax, %%dx" : : "a" (data), "d" (port));
 }
-
-
 
 void reboot()
 {
@@ -52,8 +49,6 @@ int compare_string(char s1[], char s2[]) {
 	return s1[i] - s2[i];
 }
 
-
-
 void execute_command(char *input) {
     if (compare_string(input, "System.Shutdown();") == 0) {
 	port_word_out(0x604, 0x2000); // Qemu.
@@ -61,6 +56,9 @@ void execute_command(char *input) {
     }
     else if (compare_string(input, "System.Reboot();") == 0) {
 	reboot();
+    }
+    else if (compare_string(input, "CreateFile();") == 0)
+    {
     }
     else if (compare_string(input, "Help();") == 0) {
 	print_string("Note: Every command ends with a '();' \n");
